@@ -10,7 +10,16 @@
 
 \clearpage
 
+
+
+\begin{remark}
+RECALL: inversion
+\end{remark}
+
+
 \section{Block Interchanges}
+
+\subsection{The Cycle Graph and Its Relation to $bid$}
 
 \begin{definition}
 Block Interchange
@@ -35,17 +44,21 @@ The cycle graph $G(p)$ has a unique decomposition into edge-disjoint directed cy
 \end{lemma}
 
 \begin{proof}
-It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$ node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained. The cycles are then edge-disjoint by construction.
+It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$ node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained as we only remove disjointly coloured pairs of edges from every node. The cycles are then edge-disjoint by construction.
 \end{proof}
-
-\begin{remark}
-The cycles are only edge-disjoint not vertex-disjoint.
-\end{remark}
 
 \begin{definition}
 $c(G(p))$, $c(\Gamma (p))$
 From now on the cycles of $G(p)$ will refer to the alternating cycles, not the traditional cycles of a permutation we have seen previously. 
 \end{definition}
+
+\begin{remark}
+The cycles are only edge-disjoint not vertex-disjoint.
+\end{remark}
+
+\begin{remark}
+If there is an alternating path from one node to another, both nodes are in the same cycle.
+\end{remark}
 
 \begin{example}
 p = 123
@@ -56,23 +69,86 @@ count cycles
 find minimal transpositions to id and show how it works
 \end{example}
 
+\begin{remark}
+The identity permutation has $n+1$ cycles. In fact, it is the only permutation with this many cycles.
+\end{remark}
+
 Before we can find a formula for $bid(p)$ we shall examine how single block interchanges can influence the block interchange distance of a permutation in the following two lemmas.
+
+\begin{definition}
+Canonical Block Interchange of p.
+\end{definition}
 
 \begin{lemma}
 9.10
-Let $p \in S_n$ with $p \neq id$. 
+Let $p \in S_n$ with $p \neq id$. Then there exists a block interchange which increases $c(G(p))$ by two.
 \end{lemma}
+
+\begin{proof}
+3 cases
+\end{proof}
 
 \begin{lemma}
 9.11
-
+A block interchange cannot increase $c(G(p))$ by more than two.
 \end{lemma}
+
+\begin{proof}
+Proof Sketch Only
+\end{proof}
 
 \begin{theorem}
 9.9
+Let $p \in S_n$. Then $bid(p) = \frac{n+1-c(G(p))}{2}$
 \end{theorem}
 
+\begin{proof}
+By the previous two lemmata we have for any $p \in S_n$ that
+\begin{align*}
+\frac{n+1-c(G(p))}{2} \leq bid(p) \leq \frac{n+1-c(G(p))}{2}
+\end{align*}
+since we require this amount of block interchanges to attain $n+1$ cycles in $p$, thus culminating our desired equality.
+\end{proof}
 
+\begin{remark}
+We have discovered that we need at most $\left \lfloor{\frac{n}{2}}\right \rfloor $ block interchanges to sort an n-permutation. Furthermore $bid(p) \in \mathbb{N}$ implies that $(n+1)$ and $c(G(p))$ must either both be odd or even.
+\end{remark}
+
+
+\subsection{Average Number of Block Interchanges Required to Sort $p$}
+
+\begin{definition}
+Define the Hultman Number as
+\begin{align*}
+S_H(n,k) := | \{ \pi \in S_n : c(G(p)) = k \} |
+\end{align*}
+\end{definition}
+
+\begin{example}
+$S_H(3,4) = 1$ and $S_H(3,2)=5$.
+Draw sample graphs quickly? Maybe at least two.
+Continue example after 9.14 et al.
+\end{example}
+
+
+\begin{theorem}
+9.14 and Corollary? Proof Sketch?
+\end{theorem}
+
+\begin{remark}
+The previous theorem illustrates the connection between $c(G(p))$ and $c(\Gamma (p))$. It allows us to translate ?????????? Skip all the other stuff, useless?
+\end{remark}
+
+\begin{theorem}
+9.20? 9.21, 9.22? just write theorems and quickly talk about at most.
+\end{theorem}
+
+\begin{theorem}
+9.23. The average number of block interchanges needed to sort an n-permutation is
+\begin{align*}
+\frac{1}{2} (n- \frac{1}{ \left \lfloor{\frac{n+2}{2}}\right \rfloor} - \sum^n_{i=2} \frac{1}{i} )
+\end{align*}
+\end{theorem}
 
 \begin{appendix}
 
