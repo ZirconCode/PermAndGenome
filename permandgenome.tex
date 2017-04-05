@@ -22,13 +22,15 @@ RECALL: inversion
 \subsection{The Cycle Graph and Its Relation to $bid$}
 
 \begin{definition}
-Block Interchange
+A Block Interchange is an operation that interchanges two blocks of consecutive entries without rearranging said entries.
 \end{definition}
 
+\begin{example}
+ $ |34|17|562| \rightarrow |562|17|34| $
+\end{example}
+
 \begin{definition}
-Block Interchange Distance
-$bid(p,q)$
-$bid(p) := bid(p,id)$
+Let the Block Interchange Distance between two n-permutation $p,q$, denoted as $bid(p,q)$, be the smallest number of block interchanges required to transform $p$ into $q$. Let $bid(p) := bid(p,id)$ be the number of interchanges required to sort $p$.
 \end{definition}
 
 \begin{remark}
@@ -36,8 +38,39 @@ $bid(p,q)$ is a metric and is left-invariant, just as we have seen for $btd(p,q)
 \end{remark}
 
 \begin{definition}
-Cycle Graph $G(p)$
+Let $p = p_1 p_2 \cdots p_n$ be an n-permutation. The  Cycle Graph $G(p)$ is a graph of coloured directed edges on the vertex set $\{ 0,1, \cdots ,n,n+1 \}$ constructed as follows:
+\begin{enumerate}
+\item For every $i$ with $1 \leq i \leq n+1$: Add a black edge from $p_i$ to $p_{i-1}$
+\item For every $i$ with $0 \leq i \leq n$: Add a red edge from $i$ to $i+1$
+\end{enumerate}
+with $p_0 = 0$ and $p_{n+1} = n+1$.
 \end{definition}
+
+\begin{remark}
+The Cycle Graph has $2n+2$ edges.
+\end{remark}
+
+\begin{example}
+p = 123
+
+\begin{align*}
+\xygraph{
+!{<0cm,0cm>;<1cm,0cm>:<0cm,1cm>::}
+!{(0,0) }*+{\bullet_{a}}
+!{(1,1) }*+{\bullet_{b}}
+!{(2,0) }*+{\bullet_{c}}
+!{(3,-1)}*+{\bullet_{d}}
+}
+\end{align*}
+
+
+
+p = 4213?
+p = 4312
+draw cycle graph
+count cycles
+find minimal transpositions to id and show how it works
+\end{example}
 
 \begin{lemma}
 The cycle graph $G(p)$ has a unique decomposition into edge-disjoint directed cycles in which the colors of the edges alternate.
@@ -48,8 +81,7 @@ It is easy to see that a path of alternating colours cannot branch since by cons
 \end{proof}
 
 \begin{definition}
-$c(G(p))$, $c(\Gamma (p))$
-From now on the cycles of $G(p)$ will refer to the alternating cycles, not the traditional cycles of a permutation we have seen previously. 
+Let $c(G(p))$ be the number of alternating directed cycles in the decomposition of $G(p)$. To avoid confusion, let $c(\Gamma (p))$ denote the number of cycles in the traditional sense of a permutation. From now on the cycles of $G(p)$ will refer to the alternating cycles.
 \end{definition}
 
 \begin{remark}
@@ -60,14 +92,7 @@ The cycles are only edge-disjoint not vertex-disjoint.
 If there is an alternating path from one node to another, both nodes are in the same cycle.
 \end{remark}
 
-\begin{example}
-p = 123
-p = 4213?
-p = 4312
-draw cycle graph
-count cycles
-find minimal transpositions to id and show how it works
-\end{example}
+
 
 \begin{remark}
 The identity permutation has $n+1$ cycles. In fact, it is the only permutation with this many cycles.
