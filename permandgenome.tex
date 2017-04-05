@@ -8,22 +8,74 @@
 
 \maketitle
 
+\clearpage
 
-\section{Setting the Scene}
+\section{Block Interchanges}
 
 \begin{definition}
-$G$ is a Topological Group if and only if the following are true:
-\begin{enumerate}
-\item $G$ is a topological space
-\item $G$ is Hausdorff
-\item $G$ satisfies the group axioms
-\item The maps $ (x,y) \mapsto xy $ and $ x \mapsto x^{-1}$ are continuous
-\end{enumerate}
+Block Interchange
 \end{definition}
+
+\begin{definition}
+Block Interchange Distance
+$bid(p,q)$
+$bid(p) := bid(p,id)$
+\end{definition}
+
+\begin{remark}
+$bid(p,q)$ is a metric and is left-invariant, just as we have seen for $btd(p,q)$.
+\end{remark}
+
+\begin{definition}
+Cycle Graph $G(p)$
+\end{definition}
+
+\begin{lemma}
+The cycle graph $G(p)$ has a unique decomposition into edge-disjoint directed cycles in which the colors of the edges alternate.
+\end{lemma}
+
+\begin{proof}
+It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$ node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained. The cycles are then edge-disjoint by construction.
+\end{proof}
+
+\begin{remark}
+The cycles are only edge-disjoint not vertex-disjoint.
+\end{remark}
+
+\begin{definition}
+$c(G(p))$, $c(\Gamma (p))$
+From now on the cycles of $G(p)$ will refer to the alternating cycles, not the traditional cycles of a permutation we have seen previously. 
+\end{definition}
+
+\begin{example}
+p = 123
+p = 4213?
+p = 4312
+draw cycle graph
+count cycles
+find minimal transpositions to id and show how it works
+\end{example}
+
+Before we can find a formula for $bid(p)$ we shall examine how single block interchanges can influence the block interchange distance of a permutation in the following two lemmas.
+
+\begin{lemma}
+9.10
+Let $p \in S_n$ with $p \neq id$. 
+\end{lemma}
+
+\begin{lemma}
+9.11
+
+\end{lemma}
+
+\begin{theorem}
+9.9
+\end{theorem}
+
 
 
 \begin{appendix}
-blabla
+
 
 \end{appendix}
 
