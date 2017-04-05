@@ -6,23 +6,25 @@
 \address[Simon Gr\"uning]{University of Zurich, R\"{a}mistrasse 71, 8006 Zurich}
 \email[Simon Gr\"uning]{\href{mailto:simon.gruening@uzh.ch}{simon.gruening@uzh.ch}}
 
+
 \maketitle
+
+\section*{(Block Interchanges)}
+
 
 \clearpage
 
 
 
+
+\section{The Cycle Graph and Block Interchange Distance}
+
 \begin{remark}
-RECALL: inversion
+Recall an inversion in $p = p_1 p_2 \cdots p_n $ is such that ($ i,j \in [ n ] : p_i > p_j \wedge i < j$).
 \end{remark}
 
-
-\section{Block Interchanges}
-
-\subsection{The Cycle Graph and Its Relation to $bid$}
-
 \begin{definition}
-A Block Interchange is an operation that interchanges two blocks of consecutive entries without rearranging said entries.
+A \textbf{Block Interchange} is an operation that interchanges two blocks of consecutive entries without rearranging said entries.
 \end{definition}
 
 \begin{example}
@@ -30,7 +32,7 @@ A Block Interchange is an operation that interchanges two blocks of consecutive 
 \end{example}
 
 \begin{definition}
-Let the Block Interchange Distance between two n-permutation $p,q$, denoted as $bid(p,q)$, be the smallest number of block interchanges required to transform $p$ into $q$. Let $bid(p) := bid(p,id)$ be the number of interchanges required to sort $p$.
+Let the \textbf{Block Interchange Distance} between two n-permutation $p,q$, denoted as $bid(p,q)$, be the smallest number of block interchanges required to transform $p$ into $q$. Let $bid(p) := bid(p,id)$ be the number of interchanges required to sort $p$.
 \end{definition}
 
 \begin{remark}
@@ -47,10 +49,10 @@ with $p_0 = 0$ and $p_{n+1} = n+1$.
 \end{definition}
 
 \begin{remark}
-The Cycle Graph has $2n+2$ edges.
+The Cycle Graph has $2n+2$ edges for any n-permutation.
 \end{remark}
 
-\begin{example}
+\begin{example} \leavevmode \newline
 
 $p_1 = 123 \implies c(G(p_1))=4$ 
 
@@ -127,13 +129,12 @@ It is easy to see that a path of alternating colours cannot branch since by cons
 \end{proof}
 
 \begin{definition}
-Let $c(G(p))$ be the number of alternating directed cycles in the decomposition of $G(p)$. To avoid confusion, let $c(\Gamma (p))$ denote the number of cycles in the traditional sense of a permutation. From now on the cycles of $G(p)$ will refer to the alternating cycles.
+Let $c(G(p))$ be the \textbf{number of alternating directed cycles} in the decomposition of $G(p)$. To avoid confusion, let $c(\Gamma (p))$ denote the number of cycles in the traditional sense of a permutation. From now on the cycles of $G(p)$ will refer to the alternating cycles.
 \end{definition}
 
-\begin{remark}
-
+\begin{remark} ~ %spacehacks
 \begin{enumerate}
-\item The cycles are only edge-disjoint not vertex-disjoint.
+\item The cycles are only edge-disjoint not necessarily vertex-disjoint.
 \item If there is an alternating path from one node to another, both nodes are in the same cycle.
 \item The identity permutation has $n+1$ cycles. In fact, it is the only permutation with this many cycles.
 \end{enumerate}
@@ -148,7 +149,7 @@ Let $x := p_j , y := p_i$ to ease our eyes. By our selection criterion we find t
 p = \cdots (x-1) | \cdots y | \cdots | x \cdots | (y+1) \cdots
 \end{align*}
 
-The Canonical Block Interchange is defined as the interchange transforming $p$ into
+The \textbf{Canonical Block Interchange} is defined as the interchange transforming $p$ into
 \begin{align*}
 p' = \cdots (x-1) | x \cdots | \cdots | \cdots y | (y+1) \cdots
 \end{align*}
@@ -156,8 +157,7 @@ p' = \cdots (x-1) | x \cdots | \cdots | \cdots y | (y+1) \cdots
 \end{definition}
 
 \begin{lemma}
-9.10. 
-Let $p \in S_n$ with $p \neq id$. Then there exists a block interchange which increases $c(G(p))$ by two.
+(9.10) Let $p \in S_n$ with $p \neq id$. Then there exists a block interchange which increases $c(G(p))$ by 2.
 \end{lemma}
 
 \begin{proof}
@@ -166,7 +166,7 @@ We shall prove that the canonical block interchange suffices, or symbolically:
  c(G(p')) = c(G(p)) + 2.
 \end{align*}
 
-Notice first that any interchange does not change any red edges in $G(p)$. The canonical interchange changes 3 black edges when $x$ and $y$ are adjacent, and 4 edges otherwise. We shall perform a proof by cases.
+Notice first that any block interchange does not affect the red edges in $G(p)$. The canonical interchange changes 3 black edges when $x$ and $y$ are adjacent, and 4 edges otherwise. We shall perform a proof by cases.
 
 \begin{enumerate}
 
@@ -179,9 +179,7 @@ where $a$ is the entry in $p$ directly to the right of $(x-1)$ and $b$ the one t
 p = \cdots (x-1) | a \cdots y | \cdots | x \cdots b | (y+1) \cdots
 \end{align*}
 Since a path exists, we find that the entries are part of the same cycle $C$. After performing the canonical interchange, $C$ is split into 3 cycles. In the black edges we now have $x \to (x-1)$, $(y+1) \to y$, and $a \to b$ while the red have been untouched as seen in the following illustration:
-
-$p$
-
+$$p$$
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
 !{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
@@ -198,7 +196,7 @@ $p$
 "b":@[blue]@/^0.5cm/"a"
 }  \]
 
-$\to p'$
+$$\leadsto p'$$
 
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
@@ -218,7 +216,7 @@ $\to p'$
 
 Notice the arrow in blue is not necessarily a singular edge, however it is a well defined alternating path.
 
-\item \underline{$x,y $ not adjacent:} We must introduce another notation in this case. Let $a,b,c,d$ be such that they are adjacent to $(x-1), y, x, (y+1)$ respectively pair-wise. Since they are neighbours we will find the alternating path
+\item \underline{$x,y $ not adjacent:} We must introduce another notation in this case. Let $a,b,c,d$ be such that they are adjacent to $(x-1), y, x, (y+1)$ respectively pair-wise. Since they are neighbours we will find the alternating paths
 \begin{align*}
 P_a = a \to (x-1) \to x \to c
 \end{align*}
@@ -230,8 +228,7 @@ We must make a further division of cases at this point.
 
 \begin{enumerate}
 \item \underline{$P_a, P_b $ are of one cycle:} Denote the cycle as $C_{ab}$. In this case there exists an alternating path $A_{da}$ from $d$ to $a$ with the final edge being grey. See the following illustration:
-
-$p$
+$$p$$
 
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
@@ -252,7 +249,7 @@ $p$
 "d":@[blue]@/^0.5cm/"a"
 }  \]
 
-$\to p'$
+$$\leadsto p'$$
 
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
@@ -273,11 +270,10 @@ $\to p'$
 "d":@[blue]@/^0.5cm/"a"
 }  \]
 
-where the blue edge is our path $A_{da}$, the red edges are kept static, and once more we have split one cycle into three, all else remaining the same.
+where the blue edge is our path $A_{da}$, the red edges are kept static, and once more we have split one cycle into three, all else remaining equal.
 
 \item \underline{$P_a, P_b $ are of distinct cycles:} Denote these cycles $C_a$ and $C_b$ respectively. We find that each cycle shall split into two, we shall cement this only with a short illustration as the argument is analogue.
-
-$p$
+$$p$$
 
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
@@ -299,7 +295,7 @@ $p$
 "c":@[blue]@/^0.5cm/"a"
 }  \]
 
-$\to p'$
+$$\leadsto p'$$
 
 \[  \xygraph{
 !{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
@@ -321,7 +317,7 @@ $\to p'$
 "c":@[blue]@/^0.5cm/"a"
 }  \]
 
-Where the blue edges are our paths $C_a$ and $C_b$ exempted $(x-1) \to x$ and $y \to (y+1)$.
+Where the blue edges are our paths $C_a$ and $C_b$ exempted $(x-1) \to x$ and $y \to (y+1)$ correspondingly.
 
 \end{enumerate}
 \end{enumerate}
@@ -330,20 +326,26 @@ Having exhausted all cases, we conclude the proof.
 
 \end{proof}
 
-\begin{lemma}
-9.11
-Let $p \in S_n $. A block interchange cannot increase $c(G(p))$ by more than two.
+\begin{lemma} (9.11) Let $p \in S_n $. Any block interchange performed on $p$ cannot increase $c(G(p))$ by more than 2.
+
 \end{lemma}
 
+
 \begin{proof}
-We shall only provide a quick sketch of the proof.
-?????????????????????????
+We shall only provide a quick sketch of the proof which makes use of the reversibility of block interchanges to create a contradiction.
+\begin{enumerate}
+\item Any block interchange changes at most 4 black edges of $G(p)$.
+\item For a block interchange to create more than 2 cycles, it must break one cycle into 4 smaller cycles.
+\item If this where the case, the inverse block interchange would have to turn 4 cycles into one cycle, which leads to contradiction upon closer examination. $\lightning$
+\end{enumerate}
 \end{proof}
 
 
 \begin{theorem}
-9.9
-Let $p \in S_n$. Then $bid(p) = \frac{n+1-c(G(p))}{2}$
+(9.9) Let $p \in S_n$. Then 
+\begin{align*}
+bid(p) = \frac{n+1-c(G(p))}{2} .
+\end{align*}
 \end{theorem}
 
 \begin{proof}
@@ -355,7 +357,7 @@ since we require a change in $c(G(p))$ of magnitude $( n+1)-c(G(p))$ to achieve
 \begin{align*}
 c(G(\tilde{p}))=n+1 \iff \tilde{p} = id
 \end{align*}
- and this can be achieved by half the amount of block interchanges at most and at least, thus culminating our desired equality.
+ and this can be achieved by half the same number of block interchanges at most and at least, thus culminating our desired equality.
 \end{proof}
 
 \begin{remark}
@@ -363,9 +365,10 @@ We have discovered that we need at most $\left \lfloor{\frac{n}{2}}\right \rfloo
 \end{remark}
 
 
-\subsection{Average Number of Block Interchanges Required to Sort $p$}
+\section{Average Number of Block Interchanges Required}
 
-We would now like to find the average number of block interchanges required for any n-permutation. We wish to count the cardinality of the set of n-permutations with a specific number of cycles in order to calculate this average.
+
+We would now like to find the average number of block interchanges required for any arbitrary n-permutation. We wish to count the cardinality of the set of n-permutations restricted to a specific number of cycles in order to calculate this average.
 
 \begin{definition}
 Define the Hultman Number as
@@ -375,7 +378,7 @@ S_H(n,k) := | \{ \pi \in S_n : c(G(p)) = k \} |
 \end{definition}
 
 \begin{example}
-$S_H(3,4) = 1$ and $S_H(3,2)=5$, thus all six 5 non-trivial 3-permutations have 2 cycles.
+$S_H(3,4) = 1$ and $S_H(3,2)=5$. Thus all 5 non-trivial 3-permutations have 2 cycles.
 
 Have a glance at the graph of $p = 321$:
 
@@ -405,7 +408,7 @@ S_H(n,k) = | \{ (q,r) \in S_n^2 : c(\Gamma (r)) = k \wedge qr = (12 \cdots n(n+1
 \end{align*}
 \end{theorem}
 
-The previous theorem illustrates the connection between $c(G(p))$ and $c(\Gamma (p))$. It allows us to translate our question into a previously explored one. After some complex and difficult papers alleged to require things such as symmetric functions, character theory, and non-elementary integration, we find our answer:
+The previous theorem illustrates the connection between $c(G(p))$ and $c(\Gamma (p))$. It allows us to translate our question into previously explored territory. After some complex and difficult papers alleged to require things such as symmetric functions, character theory, and non-elementary integration, we find our answer:
 
 \begin{theorem}
 (9.23) The average number of block interchanges needed to sort an n-permutation is
