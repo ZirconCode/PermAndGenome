@@ -52,10 +52,10 @@ The Cycle Graph has $2n+2$ edges.
 
 \begin{example}
 
-p = 123
+$p_1 = 123 \implies c(G(p_1))=4$ 
 
 \[  \xygraph{
-!{<0cm,0cm>;<1cm,0cm>:<0cm,1cm>::}
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
 !{(0,0) }*+{\bullet_{0}}="0"
 !{(1,0) }*+{\bullet_{1}}="1"
 !{(2,0) }*+{\bullet_{2}}="2"
@@ -71,28 +71,51 @@ p = 123
 "3":@[red]@/^0.5cm/"4"
 }  \]
 
-p = 4312
+$p_2 = 4213 \implies c(G(p_2))=1$ 
 
 \[  \xygraph{
-!{<0cm,0cm>;<1cm,0cm>:<0cm,1cm>::}
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
 !{(0,0) }*+{\bullet_{0}}="0"
-!{(1,0) }*+{\bullet_{1}}="1"
+!{(1,0) }*+{\bullet_{4}}="4"
 !{(2,0) }*+{\bullet_{2}}="2"
-!{(3,0) }*+{\bullet_{3}}="3"
-!{(4,0) }*+{\bullet_{4}}="4"
-"4":"3"
-"3":"2"
+!{(3,0) }*+{\bullet_{1}}="1"
+!{(4,0) }*+{\bullet_{3}}="3"
+!{(5,0) }*+{\bullet_{5}}="5"
+"5":"3"
+"3":"1"
+"1":"2"
+"2":"4"
+"4":"0"
+"0":@[red]@/^0.5cm/"1"
+"1":@[red]@/^0.5cm/"2"
+"2":@[red]@/^0.5cm/"3"
+"3":@[red]@/^1cm/"4"
+"4":@[red]@/^1cm/"5"
+}  \]
+
+$p_3 = 4312 \implies c(G(p_3))=3$ 
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{0}}="0"
+!{(1,0) }*+{\bullet_{4}}="4"
+!{(2,0) }*+{\bullet_{3}}="3"
+!{(3,0) }*+{\bullet_{1}}="1"
+!{(4,0) }*+{\bullet_{2}}="2"
+!{(5,0) }*+{\bullet_{5}}="5"
+"5":"2"
 "2":"1"
-"1":"0"
+"1":"3"
+"3":"4"
+"4":"0"
 "0":@[red]@/^0.5cm/"1"
 "1":@[red]@/^0.5cm/"2"
 "2":@[red]@/^0.5cm/"3"
 "3":@[red]@/^0.5cm/"4"
+"4":@[red]@/^1cm/"5"
 }  \]
 
-draw cycle graph
-count cycles
-find minimal transpositions to id and show how it works
+For the final permutation $p_3$ notice that $bid(p_3)=1=\frac{4+1-3}{2} $, something which will become relevant in a later theorem.
 \end{example}
 
 \begin{lemma}
@@ -100,7 +123,7 @@ The cycle graph $G(p)$ has a unique decomposition into edge-disjoint directed cy
 \end{lemma}
 
 \begin{proof}
-It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$ node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained as we only remove disjointly coloured pairs of edges from every node. The cycles are then edge-disjoint by construction.
+It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$-node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained as we only remove disjointly coloured pairs of edges from every node. The cycles are then edge-disjoint by construction.
 \end{proof}
 
 \begin{definition}
@@ -108,32 +131,203 @@ Let $c(G(p))$ be the number of alternating directed cycles in the decomposition 
 \end{definition}
 
 \begin{remark}
-The cycles are only edge-disjoint not vertex-disjoint.
-\end{remark}
 
-\begin{remark}
-If there is an alternating path from one node to another, both nodes are in the same cycle.
-\end{remark}
-
-
-
-\begin{remark}
-The identity permutation has $n+1$ cycles. In fact, it is the only permutation with this many cycles.
+\begin{enumerate}
+\item The cycles are only edge-disjoint not vertex-disjoint.
+\item If there is an alternating path from one node to another, both nodes are in the same cycle.
+\item The identity permutation has $n+1$ cycles. In fact, it is the only permutation with this many cycles.
+\end{enumerate}
 \end{remark}
 
 Before we can find a formula for $bid(p)$ we shall examine how single block interchanges can influence the block interchange distance of a permutation in the following two lemmas.
 
-\begin{definition}
-Canonical Block Interchange of p.
+\begin{definition} Let $p = p_1 p_2 \cdots p_n $ with $ p \neq id $, or in other words, $p$ contains at least one inversion. Select the inversion in $p$ ($ i,j \in [ n ] : p_i > p_j \wedge i < j$) such that $p_j$ is minimal and if necessary, as a second criterion that $p_i$ is maximal. 
+
+Let $x := p_j , y := p_i$ to ease our eyes. By our selection criterion we find that $x-1$ occurs before $y$ in $p$, whilst $y+1$ occurs after $x$. (In the case of $x =1$ simply let $x-1=0$ )
+\begin{align*}
+p = \cdots (x-1) | \cdots y | \cdots | x \cdots | (y+1) \cdots
+\end{align*}
+
+The Canonical Block Interchange is defined as the interchange transforming $p$ into
+\begin{align*}
+p' = \cdots (x-1) | x \cdots | \cdots | \cdots y | (y+1) \cdots
+\end{align*}
+
 \end{definition}
 
 \begin{lemma}
-9.10
+9.10. 
 Let $p \in S_n$ with $p \neq id$. Then there exists a block interchange which increases $c(G(p))$ by two.
 \end{lemma}
 
 \begin{proof}
-3 cases
+We shall prove that the canonical block interchange suffices, or symbolically:
+\begin{align*}
+ c(G(p')) = c(G(p)) + 2.
+\end{align*}
+
+Notice first that any interchange does not change any red edges in $G(p)$. The canonical interchange changes 3 black edges when $x$ and $y$ are adjacent, and 4 edges otherwise. We shall perform a proof by cases.
+
+\begin{enumerate}
+
+\item \underline{$x,y $ adjacent:} The cycle decomposition of $G(p)$ will contain an alternating path through the following nodes in respective order:
+\begin{align*}
+a \to (x-1) \to x \to y \to (y+1) \to b
+\end{align*} 
+where $a$ is the entry in $p$ directly to the right of $(x-1)$ and $b$ the one to the left of $(y+1)$.
+\begin{align*}
+p = \cdots (x-1) | a \cdots y | \cdots | x \cdots b | (y+1) \cdots
+\end{align*}
+Since a path exists, we find that the entries are part of the same cycle $C$. After performing the canonical interchange, $C$ is split into 3 cycles. In the black edges we now have $x \to (x-1)$, $(y+1) \to y$, and $a \to b$ while the red have been untouched as seen in the following illustration:
+
+$p$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{a}}="a"
+!{(2,0) }*+{\bullet_{y}}="y"
+!{(3,0) }*+{\bullet_{x}}="x"
+!{(4,0) }*+{\bullet_{b}}="b"
+!{(5,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"b"
+"x":"y"
+"a":"(x-1)"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"b":@[blue]@/^0.5cm/"a"
+}  \]
+
+$\to p'$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{x}}="x"
+!{(2,0) }*+{\bullet_{b}}="b"
+!{(3,0) }*+{\bullet_{a}}="a"
+!{(4,0) }*+{\bullet_{y}}="y"
+!{(5,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"y"
+"x":"(x-1)"
+"a":"b"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"b":@[blue]@/^0.5cm/"a"
+}  \]
+
+Notice the arrow in blue is not necessarily a singular edge, however it is a well defined alternating path.
+
+\item \underline{$x,y $ not adjacent:} We must introduce another notation in this case. Let $a,b,c,d$ be such that they are adjacent to $(x-1), y, x, (y+1)$ respectively pair-wise. Since they are neighbours we will find the alternating path
+\begin{align*}
+P_a = a \to (x-1) \to x \to c
+\end{align*}
+and
+\begin{align*}
+P_b = b \to y \to y+1 \to d
+\end{align*}
+We must make a further division of cases at this point.
+
+\begin{enumerate}
+\item \underline{$P_a, P_b $ are of one cycle:} Denote the cycle as $C_{ab}$. In this case there exists an alternating path $A_{da}$ from $d$ to $a$ with the final edge being grey. See the following illustration:
+
+$p$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{a}}="a"
+!{(2,0) }*+{\bullet_{y}}="y"
+!{(3,0) }*+{\bullet_{b}}="b"
+!{(4,0) }*+{\bullet_{c}}="c"
+!{(5,0) }*+{\bullet_{x}}="x"
+!{(6,0) }*+{\bullet_{d}}="d"
+!{(7,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"d"
+"x":"c"
+"b":"y"
+"a":"(x-1)"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"d":@[blue]@/^0.5cm/"a"
+}  \]
+
+$\to p'$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{x}}="x"
+!{(2,0) }*+{\bullet_{d}}="d"
+!{(3,0) }*+{\bullet_{b}}="b"
+!{(4,0) }*+{\bullet_{c}}="c"
+!{(5,0) }*+{\bullet_{a}}="a"
+!{(6,0) }*+{\bullet_{y}}="y"
+!{(7,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"y"
+"x":"(x-1)"
+"b":"d"
+"a":"c"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"d":@[blue]@/^0.5cm/"a"
+}  \]
+
+where the blue edge is our path $A_{da}$, the red edges are kept static, and once more we have split one cycle into three, all else remaining the same.
+
+\item \underline{$P_a, P_b $ are of distinct cycles:} Denote these cycles $C_a$ and $C_b$ respectively. We find that each cycle shall split into two, we shall cement this only with a short illustration as the argument is analogue.
+
+$p$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{a}}="a"
+!{(2,0) }*+{\bullet_{y}}="y"
+!{(3,0) }*+{\bullet_{b}}="b"
+!{(4,0) }*+{\bullet_{c}}="c"
+!{(5,0) }*+{\bullet_{x}}="x"
+!{(6,0) }*+{\bullet_{d}}="d"
+!{(7,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"d"
+"x":"c"
+"b":"y"
+"a":"(x-1)"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"d":@[blue]@/^0.5cm/"b"
+"c":@[blue]@/^0.5cm/"a"
+}  \]
+
+$\to p'$
+
+\[  \xygraph{
+!{<0cm,0cm>;<1.5cm,0cm>:<0cm,1.5cm>::}
+!{(0,0) }*+{\bullet_{(x-1)}}="(x-1)"
+!{(1,0) }*+{\bullet_{x}}="x"
+!{(2,0) }*+{\bullet_{d}}="d"
+!{(3,0) }*+{\bullet_{b}}="b"
+!{(4,0) }*+{\bullet_{c}}="c"
+!{(5,0) }*+{\bullet_{a}}="a"
+!{(6,0) }*+{\bullet_{y}}="y"
+!{(7,0) }*+{\bullet_{(y+1)}}="(y+1)"
+"(y+1)":"y"
+"x":"(x-1)"
+"b":"d"
+"a":"c"
+"y":@[red]@/^0.5cm/"(y+1)"
+"(x-1)":@[red]@/^0.5cm/"x"
+"d":@[blue]@/^0.5cm/"b"
+"c":@[blue]@/^0.5cm/"a"
+}  \]
+
+Where the blue edges are our paths $C_a$ and $C_b$ exempted $(x-1) \to x$ and $y \to (y+1)$.
+
+\end{enumerate}
+\end{enumerate}
+
+Having exhausted all cases, we conclude the proof.
+
 \end{proof}
 
 \begin{lemma}
