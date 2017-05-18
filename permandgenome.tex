@@ -20,11 +20,11 @@
 \section{The Cycle Graph and Block Interchange Distance}
 
 \begin{remark}
-Recall an inversion in $p = p_1 p_2 \cdots p_n $ is such that ($ i,j \in [ n ] : p_i > p_j \wedge i < j$).
+Recall an inversion in $p = p_1 p_2 \cdots p_n $ is such that $ i,j \in [ n ]$, $ p_i > p_j$ and $i < j$.
 \end{remark}
 
 \begin{definition}
-A \textbf{Block Interchange} is an operation that interchanges two blocks of consecutive entries without rearranging said entries.
+A \textbf{Block Interchange} is an operation that interchanges two blocks of consecutive entries without rearranging said entries within each block.
 \end{definition}
 
 \begin{example}
@@ -129,7 +129,7 @@ The cycle graph $G(p)$ has a unique decomposition into edge-disjoint directed cy
 \end{lemma}
 
 \begin{proof}
-It is easy to see that a path of alternating colours cannot branch since by construction there is always only one edge per color directed away from every node. We begin at the $0$-node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained as we only remove disjointly coloured pairs of edges from every node. The cycles are then edge-disjoint by construction.
+It is easy to see that a path of alternating colours cannot split up since by construction there is always only one edge per color directed away from every node. We begin at the $0$-node and complete a cycle (this must occur since $G(p)$ is finite). Once we have done so, we remove the edges of this cycle from $G(p)$ and iterate. Notice that in removing full cycles the structure is maintained as we only remove disjointly coloured pairs of edges from every node. The cycles are then edge-disjoint by construction.
 \end{proof}
 
 \begin{definition}
@@ -220,7 +220,7 @@ $$\leadsto p'$$
 
 Notice the arrow in blue is not necessarily a singular edge, however it is a well defined alternating path.
 
-\item \underline{$x,y $ not adjacent:} We must introduce another notation in this case. Let $a,b,c,d$ be such that they are adjacent to $(x-1), y, x, (y+1)$ respectively pair-wise. Since they are neighbours we will find the alternating paths
+\item \underline{$x,y $ not adjacent:} We must introduce another notation in this case. Let $a,b$ be such that they immediately follow $(x-1), y$ in the permutation $p$ respectively, and similarly let $c,d$ be such that they are immediately followed by $x, y+1$ respectively. Since they are neighbours we will find the alternating paths
 \begin{align*}
 P_a = a \to (x-1) \to x \to c
 \end{align*}
@@ -231,7 +231,7 @@ P_b = b \to y \to y+1 \to d
 We must make a further division of cases at this point.
 
 \begin{enumerate}
-\item \underline{$P_a, P_b $ are of one cycle:} Denote the cycle as $C_{ab}$. In this case there exists an alternating path $A_{da}$ from $d$ to $a$ with the final edge being grey. See the following illustration:
+\item \underline{$P_a, P_b $ are of one cycle:} Denote the cycle as $C_{ab}$. In this case there exists an alternating path $A_{da}$ from $d$ to $a$ with the final edge being red. See the following illustration:
 $$p$$
 
 \[  \xygraph{
@@ -377,12 +377,12 @@ We would now like to find the average number of block interchanges required for 
 \begin{definition}
 Define the Hultman Number as
 \begin{align*}
-S_H(n,k) := | \{ \pi \in S_n : c(G(p)) = k \} |
+S_H(n,k) := | \{ p \in S_n : c(G(p)) = k \} |
 \end{align*}
 \end{definition}
 
 \begin{example}
-$S_H(3,4) = 1$ and $S_H(3,2)=5$. Thus all 5 non-trivial 3-permutations have 2 cycles.
+$S_H(3,4) = 1$ and $S_H(3,2)=5$ since all 5 non-trivial 3-permutations have 2 cycles.
 
 Have a glance at the graph of $p = 321$:
 
@@ -408,7 +408,7 @@ Have a glance at the graph of $p = 321$:
 \begin{theorem}
 (9.14) 
 \begin{align*}
-S_H(n,k) = | \{ (q,r) \in S_n^2 : c(\Gamma (r)) = k \wedge qr = (12 \cdots n(n+1)) \} |
+S_H(n,k) = | \{ (q,r) \in S_{n+1}^2 : c(\Gamma (r)) = k \wedge qr = (12 \cdots n(n+1)) \wedge q \text{ cycle of length } n+1 \} |
 \end{align*}
 \end{theorem}
 
